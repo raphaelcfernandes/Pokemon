@@ -1,6 +1,8 @@
 ﻿namespace Contracts;
 
+using System.Collections.Generic;
 using System.Text.Json.Serialization;
+using Contracts.Sets;
 
 public record Card 
 {
@@ -42,4 +44,59 @@ public record Card
     [JsonPropertyName("ancientTrait")]
     [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
     public AncientTrait AncientTrait { get; set; }
+
+    [JsonPropertyName("abilities")]
+    [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
+    public IEnumerable<Ability> Abilities { get; set; }
+
+    [JsonPropertyName("attacks")]
+    [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
+    public IEnumerable<Attack> Attacks { get; set; }
+
+    [JsonPropertyName("weaknesses")]
+    [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
+    public IEnumerable<TypeValue> Weaknesses { get; set; }
+
+    [JsonPropertyName("resistances")]
+    [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
+    public IEnumerable<TypeValue> Resistances { get; set; }
+
+    [JsonPropertyName("retreatCost")]
+    public IEnumerable<string>? RetreatCost { get; set; }
+
+    [JsonPropertyName("convertedRetreatCost")]
+    public int ConvertedRetreatCost { get; set; }
+
+    [JsonPropertyName("set")]
+    public Set Set { get; set; }
+
+    [JsonPropertyName("number")]
+    public string Number { get; set; }
+
+    [JsonPropertyName("artist")]
+    public string Artist { get; set; }
+
+    [JsonPropertyName("rarity")]
+    public string Rarity { get; set; }
+
+    [JsonPropertyName("flavorText")]
+    public string FlavorText { get; set; }
+
+    [JsonPropertyName("nationalPokedexNumbers")]
+    public List<int> NationalPokedexNumbers { get; set; }
+    
+    [JsonPropertyName("legalities")]
+    public Legalities legalities { get; set; }
+
+    [JsonPropertyName("regulationMark")]
+    public string RegulationMark { get; set; }
+
+    [JsonPropertyName("images")]
+    public CardImage Images { get; set; }
+
+    [JsonPropertyName("tcgplayer")]
+    public TcgPlayer Tcgplayer { get; set; }
+
+    [JsonPropertyName("cardmarket")]
+    public CardMarket Cardmarket { get; set; }
 }
