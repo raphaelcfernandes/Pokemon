@@ -1,12 +1,10 @@
-﻿using System.Text.Json.Serialization;
-
-namespace Contracts;
+﻿namespace Contracts;
 
 public record SetImages
 {
-    [JsonPropertyName("symbol")]
+    [JsonProperty("symbol")]
     public string Symbol { get; set; }
 
-    [JsonPropertyName("logo")]
+    [JsonProperty("logo")]
     public string Logo { get; set; }
 }

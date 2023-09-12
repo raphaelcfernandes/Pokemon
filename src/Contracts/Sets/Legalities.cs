@@ -1,15 +1,13 @@
-﻿using System.Text.Json.Serialization;
-
-namespace Contracts;
+﻿namespace Contracts;
 
 public record Legalities
 {
-    [JsonPropertyName("standard")]
+    [JsonProperty("standard")]
     public string Standard { get; set; }
 
-    [JsonPropertyName("expanded")]
+    [JsonProperty("expanded")]
     public string Expanded { get; set; }
 
-    [JsonPropertyName("unlimited")]
+    [JsonProperty("unlimited")]
     public string Unlimited { get; set; }
 }

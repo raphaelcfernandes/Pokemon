@@ -1,102 +1,90 @@
 ﻿namespace Contracts;
 
 using System.Collections.Generic;
-using System.Text.Json.Serialization;
-using Contracts.Sets;
 
 public record Card 
 {
-    [JsonPropertyName("id")]
+    [JsonProperty("id")]
     public string Id { get; set; } = string.Empty;
 
-    [JsonPropertyName("name")]
+    [JsonProperty("name")]
     public string Name { get; set; } = string.Empty;
 
-    [JsonPropertyName("supertype")]
+    [JsonProperty("supertype")]
     public string Supertype { get; set; } = string.Empty;
 
-    [JsonPropertyName("subtypes")]
-    public IEnumerable<string> Subtyeps { get; set; }
+    [JsonProperty("subtypes")]
+    public List<string> Subtypes { get; set; }
 
-    [JsonPropertyName("level")]
-    [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
+    [JsonProperty("level", NullValueHandling = NullValueHandling.Ignore)]
     public string Level { get; set; }
 
-    [JsonPropertyName("hp")]
-    [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
-    public int Hp { get; set; }
+    [JsonProperty("hp", NullValueHandling = NullValueHandling.Ignore)]
+    public string? Hp { get; set; }
 
-    [JsonPropertyName("types")]
+    [JsonProperty("types")]
     public List<string> Types { get; set; }
 
-    [JsonPropertyName("evolvesFrom")]
-    [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
-    public string EvolvesFrom { get; set; }
+    [JsonProperty("evolvesFrom", NullValueHandling = NullValueHandling.Ignore)]
+    public string? EvolvesFrom { get; set; }
 
-    [JsonPropertyName("evolvesTo")]
-    [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
-    public string EvolvesTo { get; set; }
+    [JsonProperty("evolvesTo", NullValueHandling = NullValueHandling.Ignore)]
+    public List<string>? EvolvesTo { get; set; }
 
-    [JsonPropertyName("rules")]
-    [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
-    public List<string> Rules { get; set; }
+    [JsonProperty("rules", NullValueHandling = NullValueHandling.Ignore)]
+    public List<string>? Rules { get; set; }
 
-    [JsonPropertyName("ancientTrait")]
-    [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
-    public AncientTrait AncientTrait { get; set; }
+    [JsonProperty("ancientTrait", NullValueHandling = NullValueHandling.Ignore)]
+    public AncientTrait? AncientTrait { get; set; }
 
-    [JsonPropertyName("abilities")]
-    [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
-    public IEnumerable<Ability> Abilities { get; set; }
+    [JsonProperty("abilities", NullValueHandling = NullValueHandling.Ignore)]
+    public List<Ability>? Abilities { get; set; }
 
-    [JsonPropertyName("attacks")]
-    [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
-    public IEnumerable<Attack> Attacks { get; set; }
+    [JsonProperty("attacks", NullValueHandling = NullValueHandling.Ignore)]
+    public List<Attack>? Attacks { get; set; }
 
-    [JsonPropertyName("weaknesses")]
-    [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
-    public IEnumerable<TypeValue> Weaknesses { get; set; }
+    [JsonProperty("weaknesses", NullValueHandling = NullValueHandling.Ignore)]
+    public List<TypeValue>? Weaknesses { get; set; }
 
-    [JsonPropertyName("resistances")]
-    [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
-    public IEnumerable<TypeValue> Resistances { get; set; }
+    [JsonProperty("resistances", NullValueHandling = NullValueHandling.Ignore)]
+    public List<TypeValue>? Resistances { get; set; }
 
-    [JsonPropertyName("retreatCost")]
-    public IEnumerable<string>? RetreatCost { get; set; }
+    [JsonProperty("retreatCost", NullValueHandling = NullValueHandling.Ignore)]
+    public List<string>? RetreatCost { get; set; }
 
-    [JsonPropertyName("convertedRetreatCost")]
-    public int ConvertedRetreatCost { get; set; }
+    [JsonProperty("convertedRetreatCost", NullValueHandling = NullValueHandling.Ignore)]
+    public int? ConvertedRetreatCost { get; set; }
 
-    [JsonPropertyName("set")]
+    [JsonProperty("set")]
     public Set Set { get; set; }
 
-    [JsonPropertyName("number")]
+    [JsonProperty("number")]
     public string Number { get; set; }
 
-    [JsonPropertyName("artist")]
+    [JsonProperty("artist")]
     public string Artist { get; set; }
 
-    [JsonPropertyName("rarity")]
-    public string Rarity { get; set; }
+    [JsonProperty("rarity", NullValueHandling = NullValueHandling.Ignore)]
+    public string? Rarity { get; set; }
 
-    [JsonPropertyName("flavorText")]
-    public string FlavorText { get; set; }
+    [JsonProperty("flavorText", NullValueHandling = NullValueHandling.Ignore)]
+    public string? FlavorText { get; set; }
 
-    [JsonPropertyName("nationalPokedexNumbers")]
+    [JsonProperty("nationalPokedexNumbers")]
     public List<int> NationalPokedexNumbers { get; set; }
     
-    [JsonPropertyName("legalities")]
-    public Legalities legalities { get; set; }
+    [JsonProperty("legalities")]
+    public Legalities Legalities { get; set; }
 
-    [JsonPropertyName("regulationMark")]
-    public string RegulationMark { get; set; }
+    [JsonProperty("regulationMark", NullValueHandling = NullValueHandling.Ignore)]
+    public string? RegulationMark { get; set; }
 
-    [JsonPropertyName("images")]
+    [JsonProperty("images")]
     public CardImage Images { get; set; }
 
-    [JsonPropertyName("tcgplayer")]
+    [JsonProperty("tcgplayer")]
     public TcgPlayer Tcgplayer { get; set; }
 
-    [JsonPropertyName("cardmarket")]
+    [JsonProperty("cardmarket")]
     public CardMarket Cardmarket { get; set; }
 }

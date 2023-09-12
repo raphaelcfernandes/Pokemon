@@ -1,12 +1,10 @@
-﻿using System.Text.Json.Serialization;
-
-namespace Contracts;
+﻿namespace Contracts;
 
 public record CardImage
 {
-    [JsonPropertyName("small")]
-    public Uri Small { get; set; }
+    [JsonProperty("small")]
+    public string Small { get; set; }
 
-    [JsonPropertyName("large")]
-    public Uri Large { get; set; }
+    [JsonProperty("large")]
+    public string Large { get; set; }
 }

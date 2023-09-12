@@ -1,15 +1,13 @@
-﻿using System.Text.Json.Serialization;
-
-namespace Contracts;
+﻿namespace Contracts;
 
 public record TcgPlayer
 {
-    [JsonPropertyName("url")]
-    public Uri Url { get; set; }
+    [JsonProperty("url")]
+    public string Url { get; set; }
 
-    [JsonPropertyName("updatedAt")]
+    [JsonProperty("updatedAt")]
     public string UpdatedAt { get; set; }
 
-    [JsonPropertyName("prices")]
+    [JsonProperty("prices")]
     public PriceTypes Prices { get; set; }
 }

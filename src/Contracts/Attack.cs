@@ -1,21 +1,19 @@
-﻿using System.Text.Json.Serialization;
-
-namespace Contracts;
+﻿namespace Contracts;
 
 public record Attack
 {
-    [JsonPropertyName("name")]
+    [JsonProperty("name")]
     public string Name { get; set; }
 
-    [JsonPropertyName("text")]
+    [JsonProperty("text")]
     public string Text { get; set; }
 
-    [JsonPropertyName("damage")]
+    [JsonProperty("damage")]
     public string Damage { get; set; }
 
-    [JsonPropertyName("convertedEnergyCost")]
+    [JsonProperty("convertedEnergyCost")]
     public int ConvertedEnergyCost { get; set; }
 
-    [JsonPropertyName("convertedEnergyCost")]
-    public IEnumerable<string> Cost { get; set; }
+    [JsonProperty("cost")]
+    public List<string> Cost { get; set; }
 }

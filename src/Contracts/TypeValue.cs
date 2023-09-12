@@ -1,12 +1,10 @@
-﻿using System.Text.Json.Serialization;
+﻿namespace Contracts;
 
-namespace Contracts;
-
-public class TypeValue
+public record TypeValue
 {
-    [JsonPropertyName("type")]
+    [JsonProperty("type")]
     public string Type { get; set; }
 
-    [JsonPropertyName("value")]
+    [JsonProperty("value")]
     public string Value { get; set; }
 }

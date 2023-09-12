@@ -1,36 +1,34 @@
-﻿using System.Text.Json.Serialization;
-
-namespace Contracts;
+﻿namespace Contracts;
 
 public record Set
 {
-    [JsonPropertyName("id")]
+    [JsonProperty("id")]
     public string Id { get; set; }
 
-    [JsonPropertyName("name")]
+    [JsonProperty("name")]
     public string Name { get; set; }
 
-    [JsonPropertyName("series")]
+    [JsonProperty("series")]
     public string Series { get; set; }
 
-    [JsonPropertyName("printedTotal")]
+    [JsonProperty("printedTotal")]
     public long PrintedTotal { get; set; }
 
-    [JsonPropertyName("total")]
+    [JsonProperty("total")]
     public long Total { get; set; }
 
-    [JsonPropertyName("legalities")]
+    [JsonProperty("legalities")]
     public Legalities Legalities { get; set; }
 
-    [JsonPropertyName("ptcgoCode")]
+    [JsonProperty("ptcgoCode")]
     public string PtcgoCode { get; set; }
 
-    [JsonPropertyName("releaseDate")]
+    [JsonProperty("releaseDate")]
     public string ReleaseDate { get; set; }
 
-    [JsonPropertyName("updatedAt")]
+    [JsonProperty("updatedAt")]
     public string UpdatedAt { get; set; }
 
-    [JsonPropertyName("images")]
+    [JsonProperty("images")]
     public SetImages Images { get; set; }
 }

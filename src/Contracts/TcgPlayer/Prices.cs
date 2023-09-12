@@ -1,21 +1,19 @@
-﻿using System.Text.Json.Serialization;
-
-namespace Contracts;
+﻿namespace Contracts;
 
 public record Prices
 {
-    [JsonPropertyName("low")]
-    public double Low { get; set; }
+    [JsonProperty("low")]
+    public double? Low { get; set; }
 
-    [JsonPropertyName("mid")]
-    public double Mid { get; set; }
+    [JsonProperty("mid")]
+    public double? Mid { get; set; }
 
-    [JsonPropertyName("high")]
-    public double High { get; set; }
+    [JsonProperty("high")]
+    public double? High { get; set; }
 
-    [JsonPropertyName("market")]
-    public double Market { get; set; }
+    [JsonProperty("market")]
+    public double? Market { get; set; }
 
-    [JsonPropertyName("directLow")]
-    public double DirectLow { get; set; }
+    [JsonProperty("directLow")]
+    public double? DirectLow { get; set; }
 }

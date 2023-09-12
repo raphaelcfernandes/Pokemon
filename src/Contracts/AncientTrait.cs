@@ -1,12 +1,10 @@
-﻿using System.Text.Json.Serialization;
-
-namespace Contracts;
+﻿namespace Contracts;
 
 public record AncientTrait
 {
-    [JsonPropertyName("name")]
+    [JsonProperty("name")]
     public string Name { get; set; }
 
-    [JsonPropertyName("text")]
+    [JsonProperty("text")]
     public string Text { get; set; }
 }

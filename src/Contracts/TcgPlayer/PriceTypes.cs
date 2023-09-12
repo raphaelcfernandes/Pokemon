@@ -1,27 +1,25 @@
-﻿using System.Text.Json.Serialization;
-
-namespace Contracts;
+﻿namespace Contracts;
 
 public record PriceTypes
 {
-    [JsonPropertyName("holofoil")]
+    [JsonProperty("holofoil")]
     public Prices Holofoil { get; set; }
 
-    [JsonPropertyName("reverseHolofoil")]
+    [JsonProperty("reverseHolofoil")]
     public Prices ReverseHolofoil { get; set; }
 
-    [JsonPropertyName("normal")]
+    [JsonProperty("normal")]
     public Prices Normal { get; set; }
 
-    [JsonPropertyName("1stEditionHolofoil")]
+    [JsonProperty("1stEditionHolofoil")]
     public Prices The1StEditionHolofoil { get; set; }
 
-    [JsonPropertyName("unlimitedHolofoil")]
+    [JsonProperty("unlimitedHolofoil")]
     public Prices UnlimitedHolofoil { get; set; }
 
-    [JsonPropertyName("1stEdition")]
+    [JsonProperty("1stEdition")]
     public Prices The1StEdition { get; set; }
 
-    [JsonPropertyName("unlimited")]
+    [JsonProperty("unlimited")]
     public Prices Unlimited { get; set; }
 }
