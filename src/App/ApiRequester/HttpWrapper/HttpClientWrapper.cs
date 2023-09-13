@@ -10,13 +10,6 @@
             this.httpClient = new HttpClient() { BaseAddress = this.baseUri };
         }
 
-        public async Task<List<T>> GetResourceAsListAsync<T>(string uri, string id) 
-            where T : class
-        {
-            HttpResponseMessage responseMessage = await this.httpClient.GetAsync($"{uri}/{id}");
-            return await this.GetResponseAsListAsync<T>(responseMessage);
-        }
-
         public async Task<List<T>> GetResourceAsListAsync<T>(string uri) 
             where T : class
         {
