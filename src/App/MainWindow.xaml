@@ -6,9 +6,28 @@
         xmlns:local="clr-namespace:Pokemon"
         Initialized="InitHandler"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
-    <Grid>
-        <Image x:Name="cardImage" />
-        <TextBlock Text="{Binding Name}" x:Name="Result"></TextBlock>
+        Title="MainWindow" Height="1920" Width="1080" WindowState="Maximized"
+        Background="#1A202C">
+    <Grid VerticalAlignment="Center" HorizontalAlignment="Center" ShowGridLines="True" Width="800" Height="800">
+
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition />
+                <ColumnDefinition />
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition />
+                <RowDefinition />
+            </Grid.RowDefinitions>
+
+            <Image x:Name="cardImage" Grid.Row="0" Grid.Column="0"/>
+            <Image x:Name="cardImage1" Grid.Row="0" Grid.Column="1"/>
+            <Image x:Name="cardImage2" Grid.Row="1" Grid.Column="0"/>
+            <Image x:Name="cardImage3" Grid.Row="1" Grid.Column="1"/>
+        </Grid>
+        <Button Content="Back" HorizontalAlignment="Left" Margin="-72,306,0,0" VerticalAlignment="Top" Click="BackButton_Click"/>
+        <Button Content="Next" HorizontalAlignment="Left" Margin="-72,600,0,0" VerticalAlignment="Top" Click="NextButton_Click"/>
+        <TextBox HorizontalAlignment="Right" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120" x:Name="QueryText" Margin="0,0,-125,0"/>
+        <Button Content="Search" HorizontalAlignment="Right" VerticalAlignment="Top" Click="Search_Click" Margin="0,23,-44,0"/>
     </Grid>
 </Window>

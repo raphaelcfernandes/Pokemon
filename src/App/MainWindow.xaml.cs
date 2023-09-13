@@ -1,44 +1,62 @@
-﻿using System;
-using System.Diagnostics;
-using System.IO;
-using System.Net.Http;
-using System.Threading.Tasks;
-using System.Windows;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using Contracts;
-using Newtonsoft.Json;
-
-namespace Pokemon
+﻿namespace Pokemon
 {
     /// <summary>
     /// Interaction logic for MainWindow.xaml
     /// </summary>
     public partial class MainWindow : Window
     {
-        private string Name = "test";
-        private readonly HttpClient httpClient;
-        private readonly Uri baseUri = new Uri("https://api.pokemontcg.io/v2/");
+        private readonly ICardRequester cardRequester;
+        private List<Card> cards;
+        private int page = 1;
+        private int gridSize = 4;
+        private string queryText;
 
-        public MainWindow()
+        public MainWindow(ICardRequester cardRequester)
         {
-            this.httpClient = new HttpClient() { BaseAddress = this.baseUri};
+            this.cardRequester = cardRequester;
             InitializeComponent();
         }
 
         private async void InitHandler(object sender, EventArgs e)
         {
-            //HttpResponseMessage responseMessage = await this.httpClient.GetAsync("cards/gym2-2");
-            HttpResponseMessage responseMessage = await this.httpClient.GetAsync("cards?q=name:Victreebel");
-            var res = await responseMessage.Content.ReadAsStringAsync();
-            ApiResource<Card> getResponse = JsonConvert.DeserializeObject<ApiResource<Card>>(res, new JsonSerializerSettings()
+        }
+
+        private async void Search_Click(object sender, RoutedEventArgs e)
+        {
+            this.page = 1;
+            await this.RenderCards();
+        }
+
+        private async void BackButton_Click(object sender, RoutedEventArgs e)
+        {
+            if (this.page > 1)
             {
-                NullValueHandling = NullValueHandling.Ignore
+                this.page--;
+            }
+            await this.RenderCards();
+        }
+
+        private async void NextButton_Click(object sender, RoutedEventArgs e)
+        {
+            this.page++;
+            await this.RenderCards();
+        }
+
+        private async Task RenderCards(string pokemonName = "Alakazam")
+        {
+            this.cards = await this.cardRequester.SearchCards(new CardFilter() 
+            { 
+                PokemonName = string.IsNullOrEmpty(this.QueryText.Text) ? pokemonName : this.QueryText.Text, 
+                Page = this.page, 
+                PageSize = this.gridSize
             });
-            foreach (Card card in getResponse.Results)
+
+            if (this.cards.Any())
             {
-                cardImage.Source = new BitmapImage(new Uri(card.Images.Large));
-                await Task.Delay(2000);
+                cardImage.Source = new BitmapImage(new Uri(cards[0].Images.Large));
+                cardImage1.Source = new BitmapImage(new Uri(cards[1].Images.Large));
+                cardImage2.Source = new BitmapImage(new Uri(cards[2].Images.Large));
+                cardImage3.Source = new BitmapImage(new Uri(cards[3].Images.Large));
             }
         }
     }
