@@ -2,6 +2,6 @@
 {
     public interface ISubtypeRequester
     {
-        Task<List<string>> GetSupertypes();
+        Task<List<string>> GetSubtypes();
     }
 }

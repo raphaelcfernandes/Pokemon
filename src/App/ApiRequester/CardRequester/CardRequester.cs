@@ -18,14 +18,7 @@ namespace Pokemon.ApiRequester
         public async Task<List<Card>> SearchCards(CardFilter filter)
         {
             StringBuilder builder = new(this.uri);
-            builder.Append("?");
-            builder.Append($"page={filter.Page}&pageSize={filter.PageSize}");
-
-            if (filter.PokemonName is not null)
-            {
-                builder.Append($"&q=name:{filter.PokemonName}");
-            }
-            
+            builder.WithFilter(filter);
             Debug.WriteLine(builder.ToString());
             return await this.httpClient.GetResourceAsListAsync<Card>(builder.ToString());
         }
