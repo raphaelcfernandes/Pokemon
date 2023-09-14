@@ -74,20 +74,20 @@ namespace Pokemon
 
         private async Task RenderCards(string pokemonName = "Alakazam")
         {
-            //this.cards = await this.cardRequester.SearchCards(new CardFilter()
-            //{
-            //    PokemonName = string.IsNullOrEmpty(this.QueryText.Text) ? pokemonName : this.QueryText.Text,
-            //    Page = this.page,
-            //    PageSize = this.gridSize
-            //});
+            this.cards = await this.cardRequester.SearchCards(new CardFilter()
+            {
+                PokemonName = string.IsNullOrEmpty(this.QueryText.Text) ? pokemonName : this.QueryText.Text,
+                Page = this.page,
+                PageSize = this.gridSize
+            });
 
-            //if (this.cards.Any())
-            //{
-            //    cardImage.Source = new BitmapImage(new Uri(cards[0].Images.Large));
-            //    cardImage1.Source = new BitmapImage(new Uri(cards[1].Images.Large));
-            //    cardImage2.Source = new BitmapImage(new Uri(cards[2].Images.Large));
-            //    cardImage3.Source = new BitmapImage(new Uri(cards[3].Images.Large));
-            //}
+            if (this.cards.Any())
+            {
+                cardImage.Source = new BitmapImage(new Uri(cards[0].Images.Large));
+                cardImage1.Source = new BitmapImage(new Uri(cards[1].Images.Large));
+                cardImage2.Source = new BitmapImage(new Uri(cards[2].Images.Large));
+                cardImage3.Source = new BitmapImage(new Uri(cards[3].Images.Large));
+            }
         }
     }
 }

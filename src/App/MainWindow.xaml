@@ -5,12 +5,10 @@
         Height="720" 
         Width="1080" 
         WindowStartupLocation="CenterScreen" 
-        WindowStyle="None"
-        AllowsTransparency="True"
         WindowState="Maximized"
-        Background="Transparent" Title="MainWindow">
-
-    <Border Background="#eff2f7" CornerRadius="30" MouseDown="Border_MouseDown" MouseLeftButtonDown="Border_MouseLeftButtonDown">
+        Background="Transparent" Title="Pokemon TCG Finder">
+    
+    <Border Background="#eff2f7">
         <Grid>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="200"/>
@@ -20,7 +18,7 @@
             <!--Left Menu-->
             <Grid Grid.Column="0">
                 <Grid.RowDefinitions>
-                    <RowDefinition Height="150"/>
+                    <RowDefinition Height="100"/>
                     <RowDefinition Height="*"/>
                 </Grid.RowDefinitions>
 
@@ -57,6 +55,13 @@
                             Margin="-10 16 5 10"/>
                             <Separator DockPanel.Dock="Top" Background="White"/>
                         </StackPanel>
+                        <Button Style="{StaticResource MenuButton}">
+                            <StackPanel Orientation="Horizontal" DockPanel.Dock="Top">
+                                <Icon:PackIconMaterial Kind="Lightbulb" Width="20" Height="20"/>
+                                <TextBlock Text="Advanced Query" FontSize="18" Margin="10 0 0 0"/>
+                            </StackPanel>
+                        </Button>
+                        
                     </DockPanel>
                 </Border>
             </Grid>
@@ -65,19 +70,43 @@
             <Grid Grid.Column="1" HorizontalAlignment="Center" Margin="-50 0 0 0">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="100"/>
+                    <RowDefinition Height="*"/>
                 </Grid.RowDefinitions>
                 
                 <!--Search Box-->
                 <Grid Grid.Row="0" Width="300" HorizontalAlignment="Center">
-                    <TextBlock 
-                        x:Name="textQuery"
-                        Margin="20 0"
-                        VerticalAlignment="Center" 
-                        Foreground="#b0b9c6" 
-                        IsHitTestVisible="True" 
-                        Panel.ZIndex="1" />
-                    <TextBox x:Name="txtSearch" Style="{StaticResource textBoxSearch}"/>
-                    <Icon:PackIconMaterial Kind="Magnify" Width="15" Height="15" VerticalAlignment="Center" Margin="0 0 15 0" Foreground="#b0b9c6" HorizontalAlignment="Right"/>
+                    <Button 
+                        Style="{StaticResource QueryButton}" 
+                        HorizontalAlignment="Right"
+                        Margin="0 0 10 0"
+                        Click="Search_Click">
+                        <Icon:PackIconMaterial 
+                            Kind="Magnify" 
+                            Width="20" 
+                            Height="20"/>
+                    </Button>
+                    <TextBox x:Name="QueryText" Style="{StaticResource textBoxSearch}"/>
+                </Grid>
+                
+                <!--Cards-->
+                <Grid Grid.Row="1">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition />
+                            <ColumnDefinition />
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition />
+                            <RowDefinition />
+                        </Grid.RowDefinitions>
+
+                        <Image x:Name="cardImage" Grid.Row="0" Grid.Column="0"/>
+                        <Image x:Name="cardImage1" Grid.Row="0" Grid.Column="1"/>
+                        <Image x:Name="cardImage2" Grid.Row="1" Grid.Column="0"/>
+                        <Image x:Name="cardImage3" Grid.Row="1" Grid.Column="1"/>
+                    </Grid>
+                    <Button Content="Back" HorizontalAlignment="Left" Margin="-72,306,0,0" VerticalAlignment="Top" Click="BackButton_Click"/>
+                    <Button Content="Next" HorizontalAlignment="Left" Margin="-72,600,0,0" VerticalAlignment="Top" Click="NextButton_Click"/>
                 </Grid>
             </Grid>
         </Grid>
