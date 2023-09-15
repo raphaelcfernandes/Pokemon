@@ -9,3 +9,4 @@ global using Microsoft.Extensions.Hosting;
 global using System.Text;
 global using System.Collections.ObjectModel;
 global using System.Windows.Input;
+global using System.Windows.Controls;

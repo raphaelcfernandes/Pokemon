@@ -1,0 +1,51 @@
+<Window 
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    x:Class="Pokemon.CardDetailModal"
+    WindowStartupLocation="CenterScreen" 
+    MinWidth="900"
+    MinHeight="900"
+    MaxHeight="900"
+    MaxWidth="900"
+    Width="900"
+    Height="900"
+    Background="#1A202C">
+
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition />
+            <ColumnDefinition />
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        
+        <!--Card Image-->
+        <Border Grid.Column="0" Grid.Row="0" VerticalAlignment="Top" Margin="10 10 10 0" HorizontalAlignment="Center">
+            <Viewbox x:Name="ImageContainer">
+                <Image Source="{Binding Images.Large}"/>
+            </Viewbox>
+        </Border>
+        
+        <!--Card Info-->
+        <Grid Grid.Column="1">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="100"/>
+                <RowDefinition Height="100"/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+            <Grid Grid.Row="0">
+                <StackPanel Orientation="Vertical">
+                    <TextBox Foreground="White" BorderThickness="0" Background="#1A202C" Text="{Binding Name}" FontSize="20" />
+                    <TextBox Foreground="White" BorderThickness="0" Background="#1A202C" Text="{Binding Supertype}" FontSize="20" />
+                </StackPanel>
+            </Grid>
+            <Grid Grid.Row="1">
+                <StackPanel Orientation="Vertical">
+                    <TextBox Foreground="White" BorderThickness="0" Background="#1A202C" Text="Prices" FontSize="20" />
+                </StackPanel>
+            </Grid>
+        </Grid>
+        
+    </Grid>
+</Window>

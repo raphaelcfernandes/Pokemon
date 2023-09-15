@@ -70,8 +70,8 @@
             <Grid Grid.Column="1">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="62"/>
-                    <RowDefinition/>
-                    <RowDefinition Height="40"/>
+                    <RowDefinition />
+                    <RowDefinition Height="45"/>
                 </Grid.RowDefinitions>
 
                 <!--Search Box-->
@@ -91,11 +91,11 @@
                 </Grid>
 
                 <!--Cards-->
-                <Grid Grid.Row="1" >
+                <Grid Grid.Row="1">
                     <ItemsControl ItemsSource="{Binding}">
                         <ItemsControl.ItemTemplate>
                             <DataTemplate>
-                                <Image Source="{Binding Images.Large}" Margin="0 10 0 0"/>
+                                <Image Source="{Binding Images.Large}" Margin="0 10 0 0" MouseLeftButtonDown="CardMouseLeftButtonDownHandler"/>
                             </DataTemplate>
                         </ItemsControl.ItemTemplate>
                         <ItemsControl.ItemsPanel>
@@ -109,25 +109,24 @@
                 </Grid>
 
                 <!--Pagination-->
-                <Border 
-                    Grid.Row="2" 
-                    HorizontalAlignment="Center" 
-                    BorderBrush="#dee4ec" 
-                    CornerRadius="5" 
-                    Padding="5" 
-                    
-                    Background="White">
-                    <StackPanel Orientation="Horizontal" x:Name="paginatingStack">
-                        <Button 
-                            Style="{StaticResource pagingButton}" 
-                            Click="BackButton_Click" >
-                            <Icon:PackIconMaterial Kind="ChevronLeft" Style="{StaticResource pagingButtonIcon}"/>
-                        </Button>
-                        <Button Style="{StaticResource pagingButton}" Click="NextButton_Click" Margin="10 0 0 0">
-                            <Icon:PackIconMaterial Kind="ChevronRight" Style="{StaticResource pagingButtonIcon}"/>
-                        </Button>
-                    </StackPanel>
-                </Border>
+                <Grid Grid.Row="2" >
+                    <Border 
+                        Grid.Row="2"
+                        HorizontalAlignment="Center" 
+                        VerticalAlignment="Center"
+                        CornerRadius="5" 
+                        Padding="6">
+                        <StackPanel Orientation="Horizontal" x:Name="paginatingStack">
+                            <Button 
+                                Style="{StaticResource pagingButton}" Click="BackButton_Click" >
+                                <Icon:PackIconMaterial Kind="ChevronLeft" Style="{StaticResource pagingButtonIcon}"/>
+                            </Button>
+                            <Button Style="{StaticResource pagingButton}" Click="NextButton_Click" Margin="10 0 0 0">
+                                <Icon:PackIconMaterial Kind="ChevronRight" Style="{StaticResource pagingButtonIcon}"/>
+                            </Button>
+                        </StackPanel>
+                    </Border>
+                </Grid>
             </Grid>
         </Grid>
     </Border>

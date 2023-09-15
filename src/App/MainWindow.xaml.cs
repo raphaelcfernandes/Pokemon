@@ -15,11 +15,17 @@
             InitializeComponent();
             this.cardRequester = cardRequester;
             this.DataContext = this.Cards;
+            this.QueryText.Text = "Butterfree";
         }
 
         public ObservableCollection<Card> Cards { get; } = new ObservableCollection<Card>();
 
-        public int GridColumns { get; set; } = 5;
+        private void CardMouseLeftButtonDownHandler(object sender, MouseButtonEventArgs e)
+        {
+            Card b = ((Image)sender).DataContext as Card;
+            CardDetailModal cd = new(b);
+            cd.Show();
+        }
 
         private async void OnKeyDownHandler(object sender, KeyEventArgs e)
         {
@@ -83,14 +89,6 @@
             this.DataContext = this.Cards;
             this.totalPage = Math.Ceiling((double)cards.TotalCount / (double)this.pageSize);
             this.searchButton.IsEnabled = true;
-            if (this.Cards.Count > 5)
-            {
-                this.GridColumns = this.Cards.Count / 2;
-            }
-            else
-            {
-                this.GridColumns = this.Cards.Count;
-            }
         }
     }
 }
