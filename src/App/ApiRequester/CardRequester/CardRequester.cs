@@ -1,6 +1,4 @@
-﻿using System.Text;
-
-namespace Pokemon.ApiRequester
+﻿namespace Pokemon.ApiRequester
 {
     public class CardRequester : ICardRequester
     {
@@ -13,15 +11,20 @@ namespace Pokemon.ApiRequester
         }
 
         public async Task<Card> GetCardByIdAsync(string id)
-            => await this.httpClient.GetResourceAsync<Card>(this.uri, id);
+            => (await this.httpClient.GetResourceAsync<Card>(this.uri, id)).Result;
 
         public async Task<List<Card>> SearchCards(CardFilter filter)
         {
             StringBuilder builder = new(this.uri);
             builder.WithFilter(filter);
-            Debug.WriteLine(builder.ToString());
+            return (await this.httpClient.GetResourceAsListAsync<Card>(builder.ToString())).Results;
+        }
+
+        public async Task<ApiResourceAsList<Card>> SearchCardsAsApiResourceList(CardFilter filter)
+        {
+            StringBuilder builder = new(this.uri);
+            builder.WithFilter(filter);
             return await this.httpClient.GetResourceAsListAsync<Card>(builder.ToString());
         }
-            
     }
 }

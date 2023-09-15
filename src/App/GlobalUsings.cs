@@ -2,9 +2,10 @@
 global using Newtonsoft.Json;
 global using System.Net.Http;
 global using System.Threading.Tasks;
-global using System.Diagnostics;
 global using System.Windows;
 global using Pokemon.ApiRequester;
 global using Microsoft.Extensions.DependencyInjection;
 global using Microsoft.Extensions.Hosting;
-global using System.Windows.Media.Imaging;
+global using System.Text;
+global using System.Collections.ObjectModel;
+global using System.Windows.Input;

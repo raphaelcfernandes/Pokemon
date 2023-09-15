@@ -6,14 +6,28 @@
     public partial class MainWindow : Window
     {
         private readonly ICardRequester cardRequester;
-        private List<Card> cards = new();
         private int page = 1;
-        private int gridSize = 4;
+        private int pageSize = 10;
+        private double totalPage = 0;
 
         public MainWindow(ICardRequester cardRequester)
         {
-            this.cardRequester = cardRequester;
             InitializeComponent();
+            this.cardRequester = cardRequester;
+            this.DataContext = this.Cards;
+        }
+
+        public ObservableCollection<Card> Cards { get; } = new ObservableCollection<Card>();
+
+        public int GridColumns { get; set; } = 5;
+
+        private async void OnKeyDownHandler(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Enter)
+            {
+                this.page = 1;
+                await this.RenderCards();
+            }
         }
 
         private async void Search_Click(object sender, RoutedEventArgs e)
@@ -38,28 +52,45 @@
 
         private async void NextButton_Click(object sender, RoutedEventArgs e)
         {
-            this.page++;
+            if (this.page < this.totalPage)
+            {
+                this.page++;
+            }
+            
             await this.RenderCards();
         }
 
-        private async Task RenderCards(string pokemonName = "Alakazam")
+        private async Task RenderCards()
         {
-            this.searchButton.IsEnabled = false;
-            this.cards = await this.cardRequester.SearchCards(new CardFilter()
+            if (string.IsNullOrEmpty(this.QueryText.Text))
             {
-                PokemonName = string.IsNullOrEmpty(this.QueryText.Text) ? pokemonName : this.QueryText.Text,
+                return;
+            }
+
+            this.searchButton.IsEnabled = false;
+            ApiResourceAsList<Card> cards = await this.cardRequester.SearchCardsAsApiResourceList(new CardFilter()
+            {
+                PokemonName = this.QueryText.Text,
                 Page = this.page,
-                PageSize = this.gridSize
+                PageSize = this.pageSize
             });
 
-            if (this.cards.Any())
+            this.Cards.Clear();
+            foreach(Card card in cards.Results)
             {
-                cardImage.Source = new BitmapImage(new Uri(cards[0].Images.Large));
-                cardImage1.Source = new BitmapImage(new Uri(cards[1].Images.Large));
-                cardImage2.Source = new BitmapImage(new Uri(cards[2].Images.Large));
-                cardImage3.Source = new BitmapImage(new Uri(cards[3].Images.Large));
+                this.Cards.Add(card);
             }
+            this.DataContext = this.Cards;
+            this.totalPage = Math.Ceiling((double)cards.TotalCount / (double)this.pageSize);
             this.searchButton.IsEnabled = true;
+            if (this.Cards.Count > 5)
+            {
+                this.GridColumns = this.Cards.Count / 2;
+            }
+            else
+            {
+                this.GridColumns = this.Cards.Count;
+            }
         }
     }
 }

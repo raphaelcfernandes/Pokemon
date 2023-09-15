@@ -1,6 +1,4 @@
-﻿using System.Text;
-
-namespace Pokemon
+﻿namespace Pokemon
 {
     public static class StringBuilderExtensions
     {

@@ -7,14 +7,14 @@
         WindowStartupLocation="CenterScreen" 
         WindowState="Maximized"
         Background="Transparent" Title="Pokemon TCG Finder">
-    
-    <Border Background="#eff2f7">
+
+    <Border Background="#080808">
         <Grid>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="200"/>
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
-            
+
             <!--Left Menu-->
             <Grid Grid.Column="0">
                 <Grid.RowDefinitions>
@@ -46,13 +46,13 @@
                         </Border>
                         <StackPanel Orientation="Vertical" DockPanel.Dock="Top">
                             <TextBlock 
-                            DockPanel.Dock="Top" 
-                            Text="Pokemon TCG"
-                            Foreground="White" 
-                            FontSize="22" 
-                            FontWeight="SemiBold" 
-                            TextAlignment="Center" 
-                            Margin="-10 16 5 10"/>
+                                DockPanel.Dock="Top" 
+                                Text="Pokemon TCG"
+                                Foreground="White" 
+                                FontSize="22" 
+                                FontWeight="SemiBold" 
+                                TextAlignment="Center" 
+                                Margin="-10 16 5 10"/>
                             <Separator DockPanel.Dock="Top" Background="White"/>
                         </StackPanel>
                         <Button Style="{StaticResource MenuButton}">
@@ -61,61 +61,73 @@
                                 <TextBlock Text="Advanced Query" FontSize="18" Margin="10 0 0 0"/>
                             </StackPanel>
                         </Button>
-                        
+
                     </DockPanel>
                 </Border>
             </Grid>
-            
+
             <!--Main Section-->
-            <Grid Grid.Column="1" HorizontalAlignment="Center" Margin="-50 0 0 0">
+            <Grid Grid.Column="1">
                 <Grid.RowDefinitions>
-                    <RowDefinition Height="100"/>
-                    <RowDefinition Height="500"/>
-                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="62"/>
+                    <RowDefinition/>
+                    <RowDefinition Height="40"/>
                 </Grid.RowDefinitions>
-                
+
                 <!--Search Box-->
-                <Grid Grid.Row="0" Width="300" HorizontalAlignment="Center">
+                <Grid Grid.Row="0">
                     <Button 
                         x:Name="searchButton"
                         Style="{StaticResource QueryButton}" 
-                        HorizontalAlignment="Right"
-                        Margin="0 0 10 0"
+                        HorizontalAlignment="Center"
+                        Margin="250 0 0 0"
                         Click="Search_Click">
                         <Icon:PackIconMaterial 
                             Kind="Magnify" 
                             Width="20" 
                             Height="20"/>
                     </Button>
-                    <TextBox x:Name="QueryText" Style="{StaticResource textBoxSearch}"/>
+                    <TextBox x:Name="QueryText" Width="300" Style="{StaticResource textBoxSearch}" KeyDown="OnKeyDownHandler"/>
                 </Grid>
-                
+
                 <!--Cards-->
-                <Grid Grid.Row="1">
-                    <Grid>
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition/>
-                            <ColumnDefinition/>
-                        </Grid.ColumnDefinitions>
-                        <Grid.RowDefinitions>
-                            <RowDefinition />
-                            <RowDefinition />
-                        </Grid.RowDefinitions>
-
-                        <Image x:Name="cardImage" Grid.Row="0" Grid.Column="0"/>
-                        <Image x:Name="cardImage1" Grid.Row="0" Grid.Column="1"/>
-                        <Image x:Name="cardImage2" Grid.Row="1" Grid.Column="0"/>
-                        <Image x:Name="cardImage3" Grid.Row="1" Grid.Column="1"/>
-                    </Grid>
+                <Grid Grid.Row="1" >
+                    <ItemsControl ItemsSource="{Binding}">
+                        <ItemsControl.ItemTemplate>
+                            <DataTemplate>
+                                <Image Source="{Binding Images.Large}" Margin="0 10 0 0"/>
+                            </DataTemplate>
+                        </ItemsControl.ItemTemplate>
+                        <ItemsControl.ItemsPanel>
+                            <ItemsPanelTemplate>
+                                <UniformGrid 
+                                    Columns="5"
+                                    Rows="2"/>
+                            </ItemsPanelTemplate>
+                        </ItemsControl.ItemsPanel>
+                    </ItemsControl>
                 </Grid>
 
-                <!--Bottom-->
-                <Grid Grid.Row="2" Width="600">
-                    <StackPanel Orientation="Horizontal">
-                        <Button Content="Back" HorizontalAlignment="Left" Click="BackButton_Click"/>
-                        <Button Content="Next" HorizontalAlignment="Right" Click="NextButton_Click"/>
+                <!--Pagination-->
+                <Border 
+                    Grid.Row="2" 
+                    HorizontalAlignment="Center" 
+                    BorderBrush="#dee4ec" 
+                    CornerRadius="5" 
+                    Padding="5" 
+                    
+                    Background="White">
+                    <StackPanel Orientation="Horizontal" x:Name="paginatingStack">
+                        <Button 
+                            Style="{StaticResource pagingButton}" 
+                            Click="BackButton_Click" >
+                            <Icon:PackIconMaterial Kind="ChevronLeft" Style="{StaticResource pagingButtonIcon}"/>
+                        </Button>
+                        <Button Style="{StaticResource pagingButton}" Click="NextButton_Click" Margin="10 0 0 0">
+                            <Icon:PackIconMaterial Kind="ChevronRight" Style="{StaticResource pagingButtonIcon}"/>
+                        </Button>
                     </StackPanel>
-                </Grid>
+                </Border>
             </Grid>
         </Grid>
     </Border>

@@ -3,7 +3,7 @@
 public record TcgPlayer
 {
     [JsonProperty("url")]
-    public string Url { get; set; }
+    public Uri Url { get; set; }
 
     [JsonProperty("updatedAt")]
     public string UpdatedAt { get; set; }

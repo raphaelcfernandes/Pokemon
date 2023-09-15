@@ -3,8 +3,8 @@
 public record SetImages
 {
     [JsonProperty("symbol")]
-    public string Symbol { get; set; }
+    public Uri Symbol { get; set; }
 
     [JsonProperty("logo")]
-    public string Logo { get; set; }
+    public Uri Logo { get; set; }
 }

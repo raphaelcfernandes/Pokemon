@@ -10,6 +10,7 @@
             this.httpClient = httpClient;
         }
 
-        public Task<List<string>> GetSubtypes() => this.httpClient.GetResourceAsListAsync<string>(this.uri);
+        public async Task<List<string>> GetSubtypes() 
+            => (await this.httpClient.GetResourceAsListAsync<string>(this.uri)).Results;
     }
 }

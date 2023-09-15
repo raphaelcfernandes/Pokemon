@@ -2,8 +2,8 @@
 {
     public interface IHttpClientWrapper
     {
-        Task<List<T>> GetResourceAsListAsync<T>(string uri) where T : class;
+        Task<ApiResourceAsList<T>> GetResourceAsListAsync<T>(string uri) where T : class;
 
-        Task<T> GetResourceAsync<T>(string uri, string id) where T : class;
+        Task<ApiResource<T>> GetResourceAsync<T>(string uri, string id) where T : class;
     }
 }
