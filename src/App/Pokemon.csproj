@@ -8,7 +8,11 @@
 		<UseWPF>true</UseWPF>
 		<ApplicationIcon>Images\ash-pikachu.ico</ApplicationIcon>
 	</PropertyGroup>
-
+	
+	<ItemGroup>
+		<None Remove="Images\ash-pikachu.jpg" />
+	</ItemGroup>
+	
 	<ItemGroup>
 		<PackageReference Include="Extensions.Http" Version="0.0.30" />
 		<PackageReference Include="MahApps.Metro.IconPacks.Material" Version="4.11.0" />
@@ -21,5 +25,10 @@
 	</ItemGroup>
 	<ItemGroup>
 		<ProjectReference Include="..\Contracts\Contracts.csproj" />
+	</ItemGroup>
+	<ItemGroup>
+		<Resource Include="Images\ash-pikachu.jpg">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Resource>
 	</ItemGroup>
 </Project>

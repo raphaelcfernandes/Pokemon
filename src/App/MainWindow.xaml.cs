@@ -15,7 +15,6 @@
             InitializeComponent();
             this.cardRequester = cardRequester;
             this.DataContext = this.Cards;
-            this.QueryText.Text = "Butterfree";
         }
 
         public ObservableCollection<Card> Cards { get; } = new ObservableCollection<Card>();
