@@ -21,8 +21,7 @@
 
         private void CardMouseLeftButtonDownHandler(object sender, MouseButtonEventArgs e)
         {
-            Card b = ((Image)sender).DataContext as Card;
-            CardDetailModal cd = new(b);
+            CardDetailModal cd = new(((Image)sender).DataContext as Card);
             cd.Show();
         }
 
